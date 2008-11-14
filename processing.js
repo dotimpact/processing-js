@@ -1358,7 +1358,18 @@ function buildProcessing( curElement ){
     // Shortcut for drawing a circle
     if ( width == height )
       curContext.arc( x - offsetStart, y - offsetStart, width / 2, 0, Math.PI * 2, false );
-  
+    else {
+      var w = width/2;
+      var h = height/2;
+      var C = 0.5522847498307933;
+      var c_x = C * w;
+      var c_y = C * h;
+      curContext.moveTo(x+w, y);
+      curContext.bezierCurveTo(x+w, y-c_y, x+c_x, y-h, x, y-h);
+      curContext.bezierCurveTo(x-c_x, y-h, x-w, y-c_y, x-w, y);
+      curContext.bezierCurveTo(x-w, y+c_y, x-c_x, y+h, x, y+h);
+      curContext.bezierCurveTo(x+c_x, y+h, x+w, y+c_y, x+w, y);
+    }
     if ( doFill )
       curContext.fill();
       
