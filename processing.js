@@ -1476,8 +1476,8 @@ function buildProcessing( curElement ){
     }
     
     attach( curElement, "mousemove", function(e) {
-      var scrollX = window.scrollX != null ? window.scrollX : window.pageXOffset;
-      var scrollY = window.scrollY != null ? window.scrollY : window.pageYOffset;
+      var scrollX =  window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft;
+      var scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       p.pmouseX = p.mouseX;
       p.pmouseY = p.mouseY;
       p.mouseX = e.clientX - curElement.offsetLeft + scrollX;
